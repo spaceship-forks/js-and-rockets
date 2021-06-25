@@ -1,3 +1,10 @@
-// Please run your solution from this file
+import 'regenerator-runtime/runtime'
 
-console.log("Hello from %csrc/index.js", "font-weight:bold");
+import solution from './solution';
+
+const getData = async (url) => await (await fetch(url)).json();
+
+getData('https://api.spacexdata.com/v3/launches/past').then(data => {
+    const parsed = solution.prepareData(data);
+    solution.renderData(parsed)
+})
