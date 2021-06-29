@@ -1,12 +1,8 @@
-// Please implement your solution in this file
-
-const noop = () => {};
-
 module.exports = {
-  prepareData: function(payload) {
+  prepareData: function(payload, year = 2018, company = 'NASA') {
     return payload.filter(({ launch_date_utc, rocket: { second_stage: { payloads } }}) => {
-      const is2018 = (new Date(launch_date_utc)).getUTCFullYear() === 2018;
-      const isNASA = payloads.map(({ customers }) => customers).join().includes('NASA');
+      const is2018 = (new Date(launch_date_utc)).getUTCFullYear() === year;
+      const isNASA = payloads.map(({ customers }) => customers).join().includes(company);
       return is2018 && isNASA;
     })
     .sort(function(a, b) {
