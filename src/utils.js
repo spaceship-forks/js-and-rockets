@@ -1,4 +1,4 @@
-import { PAYLOAD_CUSTOMERS } from './constants';
+import { PAYLOAD_CUSTOMERS, YEARS } from './constants';
 
 // fetch utils
 const fetchData = async (url) => await (await fetch(url)).json();
@@ -6,9 +6,9 @@ const fetchData = async (url) => await (await fetch(url)).json();
 // api data utils
 const checkDateForDesiredLaunchYear = desiredYear =>
   launchUTCDate => (new Date(launchUTCDate)).getUTCFullYear() === desiredYear;
-const checkDateFor2018LaunchYear = checkDateForDesiredLaunchYear(2018);
+const checkDateFor2018LaunchYear = checkDateForDesiredLaunchYear(YEARS.IMPORTANT_YEAR);
 
-const checkLaunchPayloadCustomer = customer => customers => customers.includes(customer);
+const checkLaunchPayloadCustomer = customer => customers => customers.join().includes(customer);
 const checkNASAPayload = checkLaunchPayloadCustomer(PAYLOAD_CUSTOMERS.NASA);
 
 // sort utils

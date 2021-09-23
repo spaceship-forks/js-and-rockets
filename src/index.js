@@ -1,3 +1,11 @@
-// Please run your solution from this file
+import 'regenerator-runtime/runtime'
 
-console.log("Hello from %csrc/index.js", "font-weight:bold");
+import { prepareData, renderData } from './solution';
+import { fetchData } from './utils';
+
+import { API } from './constants';
+
+fetchData(API.PAST_LAUNCHES).then(data => {
+  const preparedData = prepareData(data);
+  renderData(preparedData)
+})
